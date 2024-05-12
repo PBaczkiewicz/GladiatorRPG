@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:admob="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+             x:Class="GladiatorRPG.DungeonPage"
+             ScaleX="0.95"
+             BackgroundColor="#373737">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <admob:MTAdView AdsId="ca-app-pub-2193099967124824/3068174552" HeightRequest="50"/>
+
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="dungeonTitle" Text="title" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" />
+                    <Label x:Name="healthLabel" Text="HP" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"/>
+                    <Label x:Name="health" Text="15/15" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"/>
+                    <Label x:Name="actionsLabel" Text="Stamina" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center"/>
+                    <Label x:Name="actions" Text="19" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" />
+                    <Button x:Name="apInfo" Text=""  BackgroundColor="Transparent" Clicked="apInfo_Clicked" Grid.RowSpan="2" Grid.Column="2"/>
+                </Grid>
+                <Grid>
+                    <Grid x:Name="MapGrid" RowSpacing="1" ColumnSpacing="1" BackgroundColor="Transparent" Scale="0.95" IsVisible="false">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="0.7*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Image x:Name="backgroundImage" Grid.Row="0" Grid.RowSpan="10" Grid.Column="0" Grid.ColumnSpan="10" Source="map_background" Scale="1.1"/>
+                        <Label x:Name="map00"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="0" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map10"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="0" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map20"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Grid.Row="0" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map30"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Grid.Row="0" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map40"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Grid.Row="0" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map50"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="5" Grid.Row="0" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map60"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="6" Grid.Row="0" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map70"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="7" Grid.Row="0" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map80"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="8" Grid.Row="0" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map90"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="9" Grid.Row="0" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+
+                        <Label x:Name="map01"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="1" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map11"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="1" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map21"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Grid.Row="1" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map31"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Grid.Row="1" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map41"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Grid.Row="1" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map51"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="5" Grid.Row="1" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map61"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="6" Grid.Row="1" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map71"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="7" Grid.Row="1" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map81"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="8" Grid.Row="1" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map91"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="9" Grid.Row="1" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+
+                        <Label x:Name="map02"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="2" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map12"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="2" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map22"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Grid.Row="2" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map32"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Grid.Row="2" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map42"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Grid.Row="2" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map52"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="5" Grid.Row="2" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map62"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="6" Grid.Row="2" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map72"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="7" Grid.Row="2" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map82"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="8" Grid.Row="2" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map92"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="9" Grid.Row="2" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+
+                        <Label x:Name="map03"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="3" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map13"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="3" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map23"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Grid.Row="3" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map33"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Grid.Row="3" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map43"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Grid.Row="3" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map53"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="5" Grid.Row="3" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map63"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="6" Grid.Row="3" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map73"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="7" Grid.Row="3" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map83"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="8" Grid.Row="3" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map93"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="9" Grid.Row="3" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+
+                        <Label x:Name="map04"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="4" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map14"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="4" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map24"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Grid.Row="4" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map34"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Grid.Row="4" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map44"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Grid.Row="4" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map54"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="5" Grid.Row="4" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map64"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="6" Grid.Row="4" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map74"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="7" Grid.Row="4" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map84"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="8" Grid.Row="4" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map94"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="9" Grid.Row="4" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+
+                        <Label x:Name="map05"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="5" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map15"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="5" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map25"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Grid.Row="5" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map35"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Grid.Row="5" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map45"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Grid.Row="5" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map55"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="5" Grid.Row="5" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map65"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="6" Grid.Row="5" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map75"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="7" Grid.Row="5" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map85"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="8" Grid.Row="5" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map95"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="9" Grid.Row="5" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+
+                        <Label x:Name="map06"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="6" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map16"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="6" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map26"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Grid.Row="6" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map36"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Grid.Row="6" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map46"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Grid.Row="6" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map56"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="5" Grid.Row="6" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map66"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="6" Grid.Row="6" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map76"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="7" Grid.Row="6" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map86"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="8" Grid.Row="6" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map96"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="9" Grid.Row="6" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+
+                        <Label x:Name="map07"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="7" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map17"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="7" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map27"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Grid.Row="7" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map37"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Grid.Row="7" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map47"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Grid.Row="7" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map57"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="5" Grid.Row="7" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map67"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="6" Grid.Row="7" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map77"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="7" Grid.Row="7" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map87"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="8" Grid.Row="7" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map97"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="9" Grid.Row="7" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+
+                        <Label x:Name="map08"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="8" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map18"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="8" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map28"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Grid.Row="8" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map38"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Grid.Row="8" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map48"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Grid.Row="8" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map58"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="5" Grid.Row="8" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map68"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="6" Grid.Row="8" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map78"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="7" Grid.Row="8" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map88"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="8" Grid.Row="8" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map98"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="9" Grid.Row="8" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+
+                        <Label x:Name="map09"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="9" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map19"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="1" Grid.Row="9" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map29"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="2" Grid.Row="9" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map39"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="3" Grid.Row="9" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map49"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="4" Grid.Row="9" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map59"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="5" Grid.Row="9" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map69"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="6" Grid.Row="9" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map79"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="7" Grid.Row="9" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map89"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="8" Grid.Row="9" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+                        <Label x:Name="map99"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Column="9" Grid.Row="9" BackgroundColor="Black" Scale="0.7" Text="" FontSize="12" />
+
+                        <Button x:Name="moveUp" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" Text="Up" Clicked="moveUp_Clicked"/>
+                        <Button x:Name="moveDown" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="3" Text="Down" Clicked="moveDown_Clicked"/>
+
+                        <Button x:Name="moveLeft" Grid.Row="11" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Left" Clicked="moveLeft_Clicked"/>
+                        <Button x:Name="moveRight" Grid.Row="11" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="2" Text="Right" Clicked="moveRight_Clicked"/>
+
+                        <Button x:Name="moveRest" Grid.Row="11" Grid.Column="7" Grid.ColumnSpan="3" Grid.RowSpan="2" Text="Rest" Clicked="moveRest_Clicked"/>
+                        <Button x:Name="moveLeave" Grid.Row="13" Grid.Column="7" Grid.ColumnSpan="3" Grid.RowSpan="2" Text="Leave" Clicked="moveLeave_Clicked"/>
+
+                        <Label IsVisible="false" x:Name="mapLogs" Text="Coś 1&#x0a;Coś2&#x0a;Coś3&#x0a;Coś4&#x0a;Coś5&#x0a;Coś6&#x0a;" Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="2" BackgroundColor="Black"/>
+
+                    </Grid>
+                    
+                    <Grid IsVisible="false" x:Name="TextGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label x:Name="infoText" Text="info text" HorizontalOptions="Center" Grid.Row="0"/>
+
+                        <Grid x:Name="buttonGrid" Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button IsVisible="false" x:Name="begin" FontSize="10" Font="Bold" Text="" Grid.Row="0" Clicked="Begin_clicked"/>
+                            <Button x:Name="option1" FontSize="10" Font="Bold" Text="[Strength] Smash it open&#x0a;&#x0a; (74%)" Grid.Row="0"  Clicked="option1_clicked"/>
+                            <Button x:Name="option2" FontSize="10" Font="Bold" Text="" Grid.Row="1" Clicked="option2_clicked"/>
+                            <Button x:Name="option3" FontSize="10" Font="Bold" Text="" Grid.Row="2" Clicked="option3_clicked"/>
+                            <Button x:Name="option4" FontSize="10" Font="Bold" Text="" Grid.Row="3" Clicked="option4_clicked"/>
+                            
+                            <Label x:Name="eventText" Text="" HorizontalOptions="Center" Grid.Row="4"/>
+                            <Button IsVisible="false" x:Name="continueOption" FontSize="10" Font="Bold" Text=""  Clicked="ContinueOption_clicked" Grid.Row="5"/>
+                            <Label x:Name="continueText"  HorizontalOptions="Center" Grid.Row="6"/>
+                            <Label x:Name="rewardText" IsVisible="true" Text="" HorizontalOptions="Center" BackgroundColor="Black" TextColor="White" Grid.Row="7"/>
+
+                        </Grid>
+
+                        
+                    </Grid>
+
+                    <Grid IsVisible="false" x:Name="RewardGrid" RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="rewardDescription" Text="&#x0a;Pick your reward&#x0a;" HorizontalOptions="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+
+                        <Button VerticalOptions="Start" Background="transparent" x:Name="reward1" Grid.Row="1" Grid.Column="1" Text="" FontSize="10" FontAttributes="Bold" AutomationId="1" Clicked="reward_Clicked"/>
+                        <Image VerticalOptions="Start" x:Name="reward1Image" Grid.Row="1" Grid.Column="1"/>
+                        <Image VerticalOptions="Start" x:Name="reward1Border" Grid.Row="1" Grid.Column="1"/>
+                        
+                        <Button VerticalOptions="Start" Background="transparent" x:Name="reward2" Grid.Row="1" Grid.Column="2" Text="" FontSize="10" FontAttributes="Bold" AutomationId="2" Clicked="reward_Clicked" />
+                        <Image VerticalOptions="Start" x:Name="reward2Image" Grid.Row="1" Grid.Column="2"/>
+                        <Image VerticalOptions="Start" x:Name="reward2Border" Grid.Row="1" Grid.Column="2"/>
+
+                        <Button VerticalOptions="Start" Background="transparent" x:Name="reward3" Grid.Row="1" Grid.Column="3" Text="" FontSize="10" FontAttributes="Bold" AutomationId="3" Clicked="reward_Clicked"/>
+                        <Image VerticalOptions="Start" x:Name="reward3Image" Grid.Row="1" Grid.Column="3"/>
+                        <Image VerticalOptions="Start" x:Name="reward3Border" Grid.Row="1" Grid.Column="3"/>
+
+
+                    </Grid>
+                </Grid>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

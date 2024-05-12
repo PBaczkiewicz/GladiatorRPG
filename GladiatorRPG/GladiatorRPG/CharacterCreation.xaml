@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GladiatorRPG.CharacterCreation" Scale="1"
+             BackgroundColor="#373736">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Welcome to Gladiator RPG!" HorizontalOptions="Center" TextColor="White"/>
+                
+                <Grid RowSpacing="0" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+
+                    <Button TextColor="White" Text="&lt;" FontSize="50" Grid.Column="0" Grid.Row="0" BackgroundColor="transparent" Clicked="NextImage_Clicked"/>
+                    <Image Grid.Column="1" Grid.Row="0" Source="player_male_1" x:Name="playerImage" />
+                    <Button Text=">" TextColor="White" FontSize="50" Grid.Column="2" Grid.Row="0" BackgroundColor="transparent" Clicked="PreviousImage_Clicked"/>
+                </Grid>
+                <Label TextColor="White" x:Name="characterNameLabel" Text="Your gladiator's name :"/>
+                <Entry  x:Name="characterName" Text="Spartacus" TextColor="White"/>
+                <Picker TextColor="White" TitleColor="White" x:Name="backgroundPicker" Title="Pick your background" SelectedIndexChanged="backgroundPicker_SelectedIndexChanged"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <BoxView BackgroundColor="Black" Grid.Row="0" Grid.Column="0"/>
+                    <Label TextColor="White" x:Name="backgroundDescription" Grid.Row="0" Grid.Column="0" Text=""/>
+                </Grid>
+                <Button TextColor="White" Background="Gray" x:Name="startGame" Text="Begin" IsEnabled="false" Clicked="startGame_Clicked"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

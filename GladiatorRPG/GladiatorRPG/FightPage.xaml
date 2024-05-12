@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:admob="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+             x:Class="GladiatorRPG.FightPage"
+             x:Name="backGroundColor" BackgroundColor="#373737" >
+    <!--BackgroundImageSource="character.png"-->
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!--<Image Aspect="Fill" Source="character.jpg"/>-->
+                <Label x:Name="postFight" Text="" HorizontalOptions="Center" VerticalOptions="Center" TextColor="LightGreen" FontSize="25" FontAttributes="Italic"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Image x:Name="playerAvatar" Source="player_male.png" Grid.Row="1" Grid.RowSpan="5" Grid.Column="0" Scale="1" />
+                    <Image x:Name="enemyAvatar" Source="player_male.png" Grid.Row="1" Grid.RowSpan="5" Grid.Column="2" Scale="1" />
+                    <Image x:Name="playerBorder" Source="borderWhite" Grid.Row="1" Grid.RowSpan="5" Grid.Column="0" Scale="1"/>
+                    <Image x:Name="enemyBorder" Source="borderWhite" Grid.Row="1" Grid.RowSpan="5" Grid.Column="2" Scale="1" />
+                    <Label FontSize="14" FontAttributes="Bold" x:Name="playerName" Text="name1234567890" Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Center"/>
+                    <Label FontSize="14" FontAttributes="Bold" HorizontalTextAlignment="Center" x:Name="enemyName" Text="name12345678910" Grid.Column="2" Grid.Row="0" />
+                    <Label x:Name="playerStatus" Grid.Row="1" Grid.RowSpan="5" VerticalOptions="Center" Grid.Column="0" Text="" TextType="Text" HorizontalOptions="Center" TextColor="Red" BackgroundColor="Black" FontSize="17"/>
+                    <Label x:Name="enemyStatus" Grid.Row="1" Grid.RowSpan="5" VerticalOptions="Center" Grid.Column="2" Text="" TextType="Text" HorizontalOptions="Center" TextColor="Red" BackgroundColor="Black" FontSize="17"/>
+                    <Label x:Name="roundLabel" Grid.Row="1" Grid.Column="1" Text="Round" HorizontalOptions="Center" FontSize="14"/>
+                    <Label x:Name="roundCounterText" Grid.Row="2" Grid.Column="1" Text="1" HorizontalOptions="Center" FontSize="14"/>
+                    <ProgressBar x:Name="fightProgress" Grid.Row="3" Grid.Column="1" Progress="0.3" ScaleX="1.5" ProgressColor="Transparent" Rotation="0"/>
+                </Grid>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="lvlLabel"  Text="Poziom" Grid.Column="1" Grid.Row="1"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="playerLevel" Text="" Grid.Column="2" Grid.Row="1"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="strLabel" Text="Siła" Grid.Column="1" Grid.Row="2"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="playerStrength" Text="123456789" Grid.Column="2" Grid.Row="2"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="perLabel" Text="Percepcja" Grid.Column="1" Grid.Row="3"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="playerPerception" Text="" Grid.Column="2" Grid.Row="3"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="dexLabel" Text="Zręczność" Grid.Column="1" Grid.Row="4"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="playerDexterity" Text="" Grid.Column="2" Grid.Row="4"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="agiLabel" Text="Zwinność" Grid.Column="1" Grid.Row="5"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="playerAgility" Text="" Grid.Column="2" Grid.Row="5"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="vitLabel" Text="Witalność" Grid.Column="1" Grid.Row="6"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="playerVitality" Text="" Grid.Column="2" Grid.Row="6"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="endLabel" Text="Wytrzymałość" Grid.Column="1" Grid.Row="7"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="playerEndurance" Text="" Grid.Column="2" Grid.Row="7"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="chaLabel" Text="Charyzma" Grid.Column="1" Grid.Row="8"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="playerCharisma" Text="" Grid.Column="2" Grid.Row="8"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="intLabel" Text="Inteligencja" Grid.Column="1" Grid.Row="9"/>
+                    <Label FontSize="10" FontAttributes="Bold" x:Name="playerIntelligence" Text="" Grid.Column="2" Grid.Row="9"/>
+
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="lvlLabel2" Text="Poziom" Grid.Column="5" Grid.Row="1"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="enemyLevel" Text="" Grid.Column="4" Grid.Row="1"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="strLabel2" Text="Siła" Grid.Column="5" Grid.Row="2"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="enemyStrength" Text="123456" Grid.Column="4" Grid.Row="2"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="perLabel2" Text="Percepcja" Grid.Column="5" Grid.Row="3"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="enemyPerception" Text="" Grid.Column="4" Grid.Row="3"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="dexLabel2" Text="Zręczność" Grid.Column="5" Grid.Row="4"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="enemyDexterity" Text="" Grid.Column="4" Grid.Row="4"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="agiLabel2" Text="Zwinność" Grid.Column="5" Grid.Row="5"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="enemyAgility" Text="" Grid.Column="4" Grid.Row="5"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="vitLabel2" Text="Witalność" Grid.Column="5" Grid.Row="6"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="enemyVitality" Text="" Grid.Column="4" Grid.Row="6"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="endLabel2" Text="Wytrzymałość" Grid.Column="5" Grid.Row="7"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="enemyEndurance" Text="" Grid.Column="4" Grid.Row="7"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="charLabel2" Text="Charyzma" Grid.Column="5" Grid.Row="8"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="enemyCharisma" Text="" Grid.Column="4" Grid.Row="8"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="intLabel2" Text="Inteligencja" Grid.Column="5" Grid.Row="9"/>
+                    <Label FontSize="10" FontAttributes="Bold" HorizontalTextAlignment="End" x:Name="enemyIntelligence" Text="" Grid.Column="4" Grid.Row="9"/>
+
+                </Grid>
+                <Grid RowSpacing="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FontSize="10" x:Name="playerDamage" Text="Obrażenia : 1 - 1" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center"/>
+                    <Label FontSize="10" x:Name="playerArmorDamageLabel" Text="Armor damage : 1.2x" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" />
+                    <ProgressBar ProgressColor="DarkRed" ScaleY="2.5" x:Name="playerHpBar" Progress="1" Grid.Row="2" Grid.Column="1"/>
+                    <Label x:Name="playerHealth" FontSize="10" VerticalTextAlignment="Center" TextColor="White" Text="100/100" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Center"/>
+                    <Label FontSize="10" x:Name="playerArmorLabel" Text="Pancerz : 0" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center"/>
+                    <Label FontSize="10" x:Name="playerHitChanceLabel" Text="Hit chance : 50%" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center"/>
+                    <Label FontSize="10" x:Name="playerCritChanceLabel" Text="Critical hit chance : 50%" Grid.Row="5" Grid.Column="1" HorizontalOptions="Center"/>
+                    <Label FontSize="10" x:Name="playerMultiHitChanceLabel" Text="Double hit chance : 50%" Grid.Row="6" Grid.Column="1" HorizontalOptions="Center"/>
+
+
+                    <Label FontSize="10" x:Name="enemyDamage" Text="Obrażenia : 1 - 1" Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center"/>
+                    <Label FontSize="10" x:Name="enemyArmorDamageLabel" Text="Armor damage : 1.2x" Grid.Row="1" Grid.Column="3" HorizontalTextAlignment="Center" />
+                    <ProgressBar ProgressColor="DarkRed" ScaleY="2.5" x:Name="enemyHpBar" Progress="1" Grid.Row="2" Grid.Column="3"/>
+                    <Label x:Name="enemyHealth" FontSize="10" VerticalTextAlignment="Center" TextColor="White" Text="100/100" Grid.Row="2" Grid.Column="3" HorizontalTextAlignment="Center"/>
+                    <Label FontSize="10" x:Name="enemyArmorLabel" Text="Pancerz : 0" Grid.Row="3" Grid.Column="3" HorizontalTextAlignment="Center"/>
+                    <Label FontSize="10" x:Name="enemyHitChanceLabel" Text="Hit chance : 50%" Grid.Row="4" Grid.Column="3" HorizontalOptions="Center"/>
+                    <Label FontSize="10" x:Name="enemyCritChanceLabel" Text="Critical hit chance : 50%" Grid.Row="5" Grid.Column="3" HorizontalOptions="Center"/>
+                    <Label FontSize="10" x:Name="enemyMultiHitChanceLabel" Text="Double hit chance : 50%" Grid.Row="6" Grid.Column="3" HorizontalOptions="Center"/>
+                </Grid>
+                <!--<Grid RowSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+
+
+                    </Grid.RowDefinitions>
+                    <Label Text=""/>
+                    <Button x:Name="attackButton" Text="Attack" Grid.Column="0" Grid.Row="1"/>
+                    <Button x:Name="skill1Button" Text="Skill" Grid.Column="1" Grid.Row="1"/>
+                    <Button Text="Skill" Grid.Column="2" Grid.Row="1"/>
+                    <Button Text="Skill" Grid.Column="3" Grid.Row="1"/>
+                    <Button Text="Skill" Grid.Column="0" Grid.Row="3"/>-->
+
+
+                <!--</Grid>-->
+                <!--<admob:MTAdView AdsId="ca-app-pub-2193099967124824/3068174552" />-->
+                <Button x:Name="skipWaiting" Text="SKIP" Clicked="skipWaiting_Clicked" ScaleX="1" />
+                <Label FontAttributes="Italic" x:Name="logText" Text="Fight logs" HorizontalTextAlignment="Center"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <BoxView Grid.Column="1" BackgroundColor="Black" />
+                    <Label FontSize="10" x:Name="fightLogs" Text="" Grid.Column="1"/>
+
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+<!--&#x0a; znak nowej linii-->

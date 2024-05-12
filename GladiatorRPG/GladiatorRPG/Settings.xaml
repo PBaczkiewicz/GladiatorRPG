@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GladiatorRPG.Settings" BackgroundColor="#2B2B2B"
+             >
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <Label x:Name="optionsLabel" Text="Options" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" FontSize="22" TextColor="white"/>
+                <Button x:Name="notificationOperations" Text="Notifications" Clicked="notificationOperations_Clicked" BackgroundColor="#FF504F4F" TextColor="white"/>
+                <Grid x:Name="notificationOperationsGrid" IsVisible="false">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="showPhoneNotifOptions" Text="Check permissions" Clicked="showPhoneNotifOptions_Clicked" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" TextColor="white" BackgroundColor="#FF504F4F"/>
+                    <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="10" x:Name="workNotif" Clicked="workNotif_Clicked" Text="Work notifications" TextColor="white" BackgroundColor="#FF504F4F"/>
+                    <Label x:Name="workNotifications" Text="Active" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" TextColor="white"/>
+                    <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="10" x:Name="expNotif" Clicked="expNotif_Clicked" Text="Expedition notifications" TextColor="white" BackgroundColor="#FF504F4F"/>
+                    <Label x:Name="expeditionNotifications" Text="Active" Grid.Row="2" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" TextColor="white"/>
+                    <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontSize="10" x:Name="arenaNotif" Clicked="arenaNotif_Clicked" Text="Arena notifications" TextColor="white" BackgroundColor="#FF504F4F"/>
+                    <Label x:Name="arenaNotifications" Text="Active" Grid.Row="3" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" TextColor="white"/>
+                    <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontSize="10" x:Name="dungNotif" Text="Dungeon notifications" Clicked="dungNotif_Clicked" TextColor="white" BackgroundColor="#FF504F4F"/>
+                    <Label x:Name="dungeonNotifications" Text="Active" Grid.Row="4" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" TextColor="white"/>
+                    <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="10" x:Name="shopNotif" Text="Shop notifications" Clicked="shopNotif_Clicked" TextColor="white" BackgroundColor="#FF504F4F"/>
+                    <Label x:Name="shopNotifications" Text="Active" Grid.Row="5" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" TextColor="white"/>
+
+                </Grid>
+                <Button x:Name="saveFileOperations" Text="Save file operations" Clicked="saveFileOperations_Clicked" BackgroundColor="#FF504F4F" TextColor="white"/>
+                <Grid x:Name="saveFileOperationsGrid" IsVisible="false">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="exportOption" Grid.Column="1" Grid.Row="1" Text="Export Save" IsEnabled="True" Clicked="exportOption_Clicked" BackgroundColor="#FF504F4F"/>
+                    <!--<Button x:Name="importOption" Grid.Column="1" Grid.Row="2" Text="Import Save" IsEnabled="True" Clicked="importOption_Clicked"/>-->
+                    <Button x:Name="proceedImport" Text="Import" Grid.Column="1" Grid.Row="3" Clicked="ImportChar_Clicked" BackgroundColor="#FF504F4F"/>
+                    <Button x:Name="deleteProgress" Grid.Column="1" Grid.Row="11" Text="Delete Progress" TextColor="Red" IsEnabled="True" Clicked="deleteProgress_Clicked" BackgroundColor="#FF504F4F"/>
+
+                    <Editor x:Name="saveImportEntry" Placeholder="Paste your save data here" Text="Tutaj wklej swój zapis" VerticalOptions="FillAndExpand" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" Grid.RowSpan="7" BackgroundColor="Black" TextColor="White"/>
+                </Grid>
+                <Button x:Name="gameTips" Text="Tips" Clicked="gameTips_Clicked" BackgroundColor="#FF504F4F" TextColor="white"/>
+                <Grid x:Name="gameTipsGrid" IsVisible="false" RowSpacing="0">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="tip" Grid.Row="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+
+                </Grid>
+
+                <Button x:Name="otherOptionButton" Text="Other" BackgroundColor="#FF504F4F" TextColor="White" Clicked="otherOptionButton_Clicked"/>
+                <Grid x:Name="otherGrid" IsVisible="false" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="otherInformations" Text="" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+
+                </Grid>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

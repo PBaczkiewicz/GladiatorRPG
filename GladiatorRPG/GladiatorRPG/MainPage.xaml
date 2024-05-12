@@ -1,0 +1,784 @@
+﻿<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:admob="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob" xmlns:gladiatorrpg="clr-namespace:GladiatorRPG"
+            x:Class="GladiatorRPG.MainTabPage"
+             x:Name="tabpage" BackgroundColor="#373737"
+            BarBackgroundColor="Black"
+            BarTextColor="White">
+    <!-- Pozostałości po testach -->
+    <TabbedPage.Resources>
+        <Style x:Key="NavigationTitleStyle" TargetType="NavigationPage">
+            <Setter Property="TitleView">
+                <Setter.Value>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{TemplateBinding Title}"
+                               HorizontalOptions="CenterAndExpand"
+                               TextColor="Red"
+                               FontSize="8"
+                               FontAttributes="Bold"/>
+                    </StackLayout>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--<Button Text="Click" Clicked="Przycisk" Grid.Column="0" Grid.Row="4" />-->
+        <!--Okienko wyboru opcji, przyda się do wypraw-->
+        <!--<Picker x:Name="myPicker">
+    <Picker.ItemsSource>
+        <x:Array Type="{x:Type x:String}">
+            <x:String>Opcja 1</x:String>
+            <x:String>Opcja 2</x:String>
+            <x:String>Opcja 3</x:String>
+        </x:Array>
+    </Picker.ItemsSource>
+</Picker>-->
+    </TabbedPage.Resources>
+
+    <TabbedPage.Children>
+        <!-- Karta postaci -->
+        <TabbedPage x:Name="characterTab" Title="Char" BarBackgroundColor="Green" BarTextColor="White">
+            <!-- Strona ze statystykami gracza -->
+            <ContentPage x:Name="overallScreen" Title="Overall" Scale="0.98" >
+                <ContentPage.Resources>
+                    <Style TargetType="Button" x:Key="LabelButtonStyle">
+                        <Setter Property="BackgroundColor" Value="Transparent" />
+                        <Setter Property="BorderColor" Value="Transparent" />
+                        <Setter Property="BorderWidth" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="TextTransform" Value="None" />
+                        <Setter Property="HorizontalOptions" Value="Start" />
+                        <Setter Property="VerticalOptions" Value="Start" />
+                        <Setter Property="HeightRequest" Value="1" />
+                        <Setter Property="WidthRequest" Value="1" />
+                        <!--Style="{StaticResource LabelButtonStyle}"-->
+                    </Style>
+                    <Style TargetType="Label" x:Key="LabelStyle">
+                        <Setter Property="TextColor" Value="White"/>
+                        <Setter Property="BackgroundColor" Value="Transparent" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="TextTransform" Value="None" />
+                        <Setter Property="HorizontalOptions" Value="Start" />
+                        <Setter Property="VerticalOptions" Value="Start" />
+                        <Setter Property="HeightRequest" Value="1" />
+                        <Setter Property="WidthRequest" Value="1" />
+                        <!--Style="{StaticResource LabelButtonStyle}"-->
+                    </Style>
+                </ContentPage.Resources>
+                <ScrollView>
+                    <StackLayout>
+                        <admob:MTAdView AdsId="ca-app-pub-2193099967124824/3068174552" HeightRequest="50"/>
+
+                        <!--<Label x:Name="lastRecordedTime" Text=""/>-->
+
+                        <!--Niepotrzebny tekst, zostawiłem aby podejrzeć jak się kolorki zmienia-->
+                        <!--<Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="ELO" TextColor="Red"/>
+                                    <Span Text=" MORDO" TextColor="Pink"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>-->
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ImageButton   x:Name="playerAvatar" Clicked="playerAvatar_Clicked" BackgroundColor="transparent" Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" Scale="0.95" />
+                            <Label x:Name="name" Text="name" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" TextColor="White"/>
+                            <Label x:Name="level" Text="-" Grid.Row="1" Grid.Column="0"/>
+                            <Label HorizontalOptions="Center" FontSize="10" x:Name="experience" Text="0/100" Grid.Row="3" TranslationY="-8" FontAttributes="Bold"/>
+                            <ProgressBar  Grid.Column="0" Grid.Row="3" x:Name="levelProgress" ProgressColor="Yellow" Progress="0.1"/>
+
+                        </Grid>
+                        <Label/>
+                        <Grid RowSpacing="0" ColumnSpacing="0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.9*" />
+                                <ColumnDefinition Width="0.3*" />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="SubstatsButton"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="8" Clicked="Stats_Clicked" Background="transparent"/>
+
+                            <Label FontAttributes="Bold" FontSize="10" x:Name="fame" Text="Sława : 0" Grid.Column="3" Grid.Row="0" HorizontalOptions="Center" TranslationY="-10"/>
+                            <Label FontAttributes="Bold" FontSize="10" x:Name="gold" TextColor="Gold" Text="Złoto : 0" Grid.Column="3" Grid.Row="1" HorizontalOptions="Center" TranslationY="-10"/>
+
+                            <Label  FontAttributes="Bold" FontSize="10" x:Name="dmgLabel" Text="Obrażenia" Grid.Column="3" Grid.Row="2" HorizontalOptions="Center"/>
+                            <Label  FontAttributes="Bold" FontSize="10" x:Name="damage" Text="1-1" Grid.Column="3" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Start"/>
+                            <Label  FontAttributes="Bold" FontSize="10" x:Name="hpLabel" Text="Zdrowie" Grid.Column="3" Grid.Row="4" HorizontalOptions="Center" HorizontalTextAlignment="End"/>
+                            <ProgressBar  x:Name="lifeBar" Progress="1" ProgressColor="DarkRed" Grid.Column="3" Grid.Row="5" ScaleY="2.5" />
+                            <Label  FontAttributes="Bold" FontSize="10" x:Name="lifeCounter" Text="100/100" Grid.Column="3" Grid.Row="5" HorizontalOptions="Center" VerticalTextAlignment="Center" TextColor="White"/>
+                            <Label  FontAttributes="Bold" FontSize="10" x:Name="armorCounter" Text="Pancerz : 0" Grid.Column="3" Grid.Row="6" HorizontalOptions="Center"/>
+
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="strLabel" Text="Siła" Grid.Column="0" Grid.Row="0" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="str" Text="1" Grid.Column="1" Grid.Row="0" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="perLabel"  Text="Władanie bronią" Grid.Column="0" Grid.Row="1" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="per" Text="1" Grid.Column="1" Grid.Row="1" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="dexLabel" Text="Zręczność" Grid.Column="0" Grid.Row="2" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="dex" Text="1" Grid.Column="1" Grid.Row="2" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="agiLabel"  Text="Zwinność" Grid.Column="0" Grid.Row="3"/>
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="agi" Text="1" Grid.Column="1" Grid.Row="3"/>
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="vitLabel" Text="Witalność" Grid.Column="0" Grid.Row="4" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="vit" Text="1" Grid.Column="1" Grid.Row="4" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="endLabel" Text="Wytrzymałość" Grid.Column="0" Grid.Row="5" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="end" Text="1" Grid.Column="1" Grid.Row="5" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="chaLabel" Text="Charyzma" Grid.Column="0" Grid.Row="6" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="cha" Text="1" Grid.Column="1" Grid.Row="6" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="intLabel" Text="Inteligencja" Grid.Column="0" Grid.Row="7" />
+                            <Label BackgroundColor="Black" FontAttributes="Bold" FontSize="12" x:Name="wis" Text="1" Grid.Column="1" Grid.Row="7" />
+
+
+                        </Grid>
+                        <Button x:Name="playerEquippedText" BackgroundColor="#408C8C8C" Text="Equipped items (hide)" Clicked="ShowEquippedItems" FontSize="10" HorizontalOptions="Start"/>
+                        <Grid x:Name="playerEquippedDisplay" IsVisible="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button AutomationId="equippedHelmet" x:Name="helmet" BackgroundColor="Transparent" Clicked="equipped_Clicked"  Text="&#x0a;&#x0a;&#x0a;&#x0a;&#x0a;&#x0a;&#x0a;"  Grid.Column="1" Grid.Row="0" HorizontalOptions="Fill" VerticalOptions="Fill" FontSize="6" />
+                            <Image x:Name="helmetImage" Source="" Grid.Column="1" Grid.Row="0" Aspect="AspectFit" />
+                            <Image x:Name="helmetBorder" Source="" Grid.Column="1" Grid.Row="0" Aspect="AspectFit" />
+                            <Button AutomationId="equippedTorso" x:Name="torso" BackgroundColor="Transparent" Clicked="equipped_Clicked" Text="Torso" Grid.Column="1" Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="Fill" FontSize="6"/>
+                            <Image x:Name="torsoImage" Source="" Grid.Column="1" Grid.Row="1" Aspect="AspectFit" />
+                            <Image x:Name="torsoBorder" Source="" Grid.Column="1" Grid.Row="1" Aspect="AspectFit" />
+                            <Button AutomationId="equippedWeapon" x:Name="weapon" BackgroundColor="Transparent" Clicked="equipped_Clicked" Text="Weapon" Grid.Column="0" Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="Fill" FontSize="6"/>
+                            <Image x:Name="weaponImage" Source="" Grid.Column="0" Grid.Row="1" Aspect="AspectFit" />
+                            <Image x:Name="weaponBorder" Source="" Grid.Column="0" Grid.Row="1" Aspect="AspectFit" />
+                            <Button AutomationId="equippedGloves" x:Name="gloves" BackgroundColor="Transparent" Clicked="equipped_Clicked" Text="Gloves" Grid.Column="0" Grid.Row="2" HorizontalOptions="Fill" VerticalOptions="Fill" FontSize="6"/>
+                            <Image x:Name="glovesImage" Source="" Grid.Column="0" Grid.Row="2" Aspect="AspectFit" />
+                            <Image x:Name="glovesBorder" Source="" Grid.Column="0" Grid.Row="2" Aspect="AspectFit" />
+                            <Button AutomationId="equippedBoots" x:Name="boots" BackgroundColor="Transparent" Clicked="equipped_Clicked" Text="Boots" Grid.Column="1" Grid.Row="2" HorizontalOptions="Fill" VerticalOptions="Fill" FontSize="6"/>
+                            <Image x:Name="bootsImage" Source="" Grid.Column="1" Grid.Row="2" Aspect="AspectFit" />
+                            <Image x:Name="bootsBorder" Source="" Grid.Column="1" Grid.Row="2" Aspect="AspectFit" />
+                            <Button AutomationId="equippedShield" x:Name="shield" BackgroundColor="Transparent" Clicked="equipped_Clicked" Text="Shield" Grid.Column="2" Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="Fill" FontSize="6"/>
+                            <Image x:Name="shieldImage" Source="" Grid.Column="2" Grid.Row="1" Aspect="AspectFit" />
+                            <Image x:Name="shieldBorder" Source="" Grid.Column="2" Grid.Row="1" Aspect="AspectFit" />
+                            <Button AutomationId="equippedNecklace" x:Name="necklace" BackgroundColor="Transparent" Clicked="equipped_Clicked" Text="Necklace" Grid.Column="3" Grid.Row="0" HorizontalOptions="Fill" VerticalOptions="Fill" FontSize="6"/>
+                            <Image x:Name="necklaceImage" Source="" Grid.Column="3" Grid.Row="0" Aspect="AspectFit" />
+                            <Image x:Name="necklaceBorder" Source="" Grid.Column="3" Grid.Row="0" Aspect="AspectFit" />
+                            <Button AutomationId="equippedBelt" x:Name="belt" BackgroundColor="Transparent" Clicked="equipped_Clicked" Text="Belt" Grid.Column="3" Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="Fill" FontSize="6"/>
+                            <Image x:Name="beltImage" Source="" Grid.Column="3" Grid.Row="1" Aspect="AspectFit" />
+                            <Image x:Name="beltBorder" Source="" Grid.Column="3" Grid.Row="1" Aspect="AspectFit" />
+                            <Button AutomationId="equippedRing" x:Name="ring" BackgroundColor="Transparent" Clicked="equipped_Clicked" Text="Ring" Grid.Column="3" Grid.Row="2" HorizontalOptions="Fill" VerticalOptions="Fill" FontSize="6"/>
+                            <Image x:Name="ringImage" Source="" Grid.Column="3" Grid.Row="2" Aspect="AspectFit" />
+                            <Image x:Name="ringBorder" Source="" Grid.Column="3" Grid.Row="2" Aspect="AspectFit" />
+
+                        </Grid>
+                        <Button x:Name="eqLabel" Text="Ekwipunek" BackgroundColor="#408C8C8C" Clicked="ShowInventory" FontSize="10" HorizontalOptions="Start"/>
+                        <Grid x:Name="playerInventoryDisplay" IsVisible="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="100"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="0" x:Name="eq00" Text="&#x0a;&#x0a;&#x0a;&#x0a;&#x0a;&#x0a;&#x0a;Hełmik bólu" Grid.Column="0" Grid.Row="0" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq00Image" Source="" Grid.Column="0" Grid.Row="0" Aspect="AspectFit" />
+                            <Image x:Name="eq00Border" Source="" Grid.Column="0" Grid.Row="0" Aspect="AspectFit" />
+
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="1" x:Name="eq10" Text="" Grid.Column="1" Grid.Row="0" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq10Image" Source="" Grid.Column="1" Grid.Row="0" Aspect="AspectFit" />
+                            <Image x:Name="eq10Border" Source="" Grid.Column="1" Grid.Row="0" Aspect="AspectFit" />
+
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="2" x:Name="eq20" Text="" Grid.Column="2" Grid.Row="0" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq20Image" Source="" Grid.Column="2" Grid.Row="0" Aspect="AspectFit" />
+                            <Image x:Name="eq20Border" Source="" Grid.Column="2" Grid.Row="0" Aspect="AspectFit" />
+
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="3" x:Name="eq30" Text="" Grid.Column="3" Grid.Row="0" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq30Image" Source="" Grid.Column="3" Grid.Row="0" Aspect="AspectFit" />
+                            <Image x:Name="eq30Border" Source="" Grid.Column="3" Grid.Row="0" Aspect="AspectFit" />
+
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="4" x:Name="eq01" Text="" Grid.Column="0" Grid.Row="1" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq01Image" Source="" Grid.Column="0" Grid.Row="1" Aspect="AspectFit" />
+                            <Image x:Name="eq01Border" Source="" Grid.Column="0" Grid.Row="1" Aspect="AspectFit" />
+
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="5" x:Name="eq11" Text="" Grid.Column="1" Grid.Row="1" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq11Image" Source="" Grid.Column="1" Grid.Row="1" Aspect="AspectFit" />
+                            <Image x:Name="eq11Border" Source="" Grid.Column="1" Grid.Row="1" Aspect="AspectFit" />
+
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="6" x:Name="eq21" Text="" Grid.Column="2" Grid.Row="1" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq21Image" Source="" Grid.Column="2" Grid.Row="1" Aspect="AspectFit" />
+                            <Image x:Name="eq21Border" Source="" Grid.Column="2" Grid.Row="1" Aspect="AspectFit" />
+
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="7" x:Name="eq31" Text="" Grid.Column="3" Grid.Row="1" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq31Image" Source="" Grid.Column="3" Grid.Row="1" Aspect="AspectFit" />
+                            <Image x:Name="eq31Border" Source="" Grid.Column="3" Grid.Row="1" Aspect="AspectFit" />
+
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="8" x:Name="eq02" Text="" Grid.Column="0" Grid.Row="2" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq02Image" Source="" Grid.Column="0" Grid.Row="2" Aspect="AspectFit" />
+                            <Image x:Name="eq02Border" Source="" Grid.Column="0" Grid.Row="2" Aspect="AspectFit" />
+
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="9" x:Name="eq12" Text="" Grid.Column="1" Grid.Row="2" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq12Image" Source="" Grid.Column="1" Grid.Row="2" Aspect="AspectFit" />
+                            <Image x:Name="eq12Border" Source="" Grid.Column="1" Grid.Row="2" Aspect="AspectFit" />
+
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="10" x:Name="eq22" Text="" Grid.Column="2" Grid.Row="2" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq22Image" Source="" Grid.Column="2" Grid.Row="2" Aspect="AspectFit" />
+                            <Image x:Name="eq22Border" Source="" Grid.Column="2" Grid.Row="2" Aspect="AspectFit" />
+
+                            <Button FontSize="6" FontAttributes="Bold" AutomationId="11" x:Name="eq32" Text="" Grid.Column="3" Grid.Row="2" Clicked="eq_Clicked" Background="Transparent"/>
+                            <Image x:Name="eq32Image" Source="" Grid.Column="3" Grid.Row="2" Aspect="AspectFit" />
+                            <Image x:Name="eq32Border" Source="" Grid.Column="3" Grid.Row="2" Aspect="AspectFit" />
+
+
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.15*"/>
+                                <ColumnDefinition Width="0.35*"/>
+                                <ColumnDefinition Width="0.35*"/>
+                                <ColumnDefinition Width="0.15*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="recieveItemButton" Text="Recieve" Clicked="RecieveItemButton_Clicked" Grid.Column="1"/>
+                            <Label x:Name="recieveItemLabel" Text="1 item to recieve" Grid.Column="2" Grid.ColumnSpan="2" VerticalOptions="Center"/>
+                        </Grid>
+                        <Button IsVisible="FALSE" x:Name="test" Clicked="Test_Clicked" Text="Test"/>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="0.9*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label x:Name="staminaLabel" Text="Wytrzymałość" Grid.Column="1" Grid.Row="0" HorizontalTextAlignment="Center"/>
+                            <ProgressBar x:Name="stamBar" Grid.Column="1" Grid.Row="1" Progress="1" ProgressColor="DarkOrange" TranslationY="12"/>
+                            <Label x:Name="stamCounter" Text="10/10" Grid.Column="1" Grid.Row="1" HorizontalTextAlignment="Center"/>
+                        </Grid>
+
+                        <Label x:Name="timerLabel" Text="0" Grid.Column="0" VerticalOptions="Center" />
+                        <Button x:Name="optionsButton" Clicked="optionButton_Clicked"/>
+                        <Button x:Name="goalsButton" Clicked="goalsButton_Clicked"/>
+                        <!--<Button x:Name="manualSave" Clicked="manualSave_Clicked"/>-->
+                        <!--<Button x:Name="testButton" Clicked="testButton_Clicked"/>-->
+
+                        <!--<Button x:Name="testButton1" Clicked="testButton1_Clicked"/>
+                        <Button x:Name="testButton2" Clicked="testButton2_Clicked"/>-->
+
+                        <!--<Button x:Name="IvuLoad" Text="Ivu" Clicked="Ivu_Clicked" IsVisible="false"/>-->
+
+
+                    </StackLayout>
+                </ScrollView>
+            </ContentPage>
+
+            <!--Strona z trenowaniem statystyk-->
+            <ContentPage x:Name="trainingScreen" Title="Training" IsEnabled="True">
+                <!--<ScrollView>-->
+                <StackLayout>
+                    <admob:MTAdView AdsId="ca-app-pub-2193099967124824/3068174552" HeightRequest="50" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="trainingInfoButton" Grid.Column="0" FontSize="12" Text="Training :" Clicked="TrainingInfo_Clicked"/>
+                        <Label x:Name="trainingInfo" Grid.Column="1" HorizontalTextAlignment="End" Text="Cost of training in gold"/>
+                    </Grid>
+                    <Grid RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="0.5*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.001*" />
+                            <ColumnDefinition Width="1.6*" />
+                            <ColumnDefinition Width="0.4*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1.4*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--<Button x:Name="TrainingInfoButton"  Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0" Grid.RowSpan="16" Clicked="TrainingInfo_Clicked" Background="transparent"/>-->
+
+                        <Label x:Name="strLabel1" Text="" Grid.Column="1" Grid.Row="0" VerticalOptions="End"/>
+                        <Label x:Name="str1" Text="1" Grid.Column="2" Grid.Row="0" VerticalOptions="End"/>
+                        <Label x:Name="strCostLabel" Text="0" Grid.Column="4" Grid.Row="0" FontSize="12" VerticalTextAlignment="Center" Grid.RowSpan="2"/>
+                        <ProgressBar x:Name="strProgress" Progress="0.5" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="1" VerticalOptions="Start" ProgressColor="White" />
+                        <Button IsEnabled="True" x:Name="strTrainButton" Clicked="TrainStrength" FontSize="15" TextTransform="None" FontAttributes="Bold" Text="Train"  Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" />
+
+
+                        <Label x:Name="perLabel1" Text="" Grid.Column="1" Grid.Row="2" VerticalOptions="End"/>
+                        <Label x:Name="per1" Text="1" Grid.Column="2" Grid.Row="2" VerticalOptions="End"/>
+                        <Label x:Name="perCostLabel" Text="0" Grid.Column="4" Grid.Row="2" FontSize="12" VerticalTextAlignment="Center" Grid.RowSpan="2"/>
+                        <ProgressBar x:Name="perProgress" Progress="0.5" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="3" VerticalOptions="Start" ProgressColor="White" />
+                        <Button IsEnabled="True" x:Name="perTrainButton" Clicked="TrainPerception" FontSize="15" TextTransform="None" FontAttributes="Bold" Text="Train" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2"/>
+
+                        <Label x:Name="dexLabel1" Text="" Grid.Column="1" Grid.Row="4" VerticalOptions="End"/>
+                        <Label x:Name="dex1" Text="1" Grid.Column="2" Grid.Row="4" VerticalOptions="End"/>
+                        <Label x:Name="dexCostLabel" Text="0" Grid.Column="4" Grid.Row="4" FontSize="12" VerticalTextAlignment="Center" Grid.RowSpan="2"/>
+                        <ProgressBar x:Name="dexProgress" Progress="0.5" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="5" VerticalOptions="Start" ProgressColor="White" />
+                        <Button IsEnabled="True" x:Name="dexTrainButton" Clicked="TrainDexterity" FontSize="15" TextTransform="None" FontAttributes="Bold" Text="Train"  Grid.Column="3" Grid.Row="4" Grid.RowSpan="2"/>
+
+                        <Label x:Name="agiLabel1" Text="" Grid.Column="1" Grid.Row="6" VerticalOptions="End"/>
+                        <Label x:Name="agi1" Text="1" Grid.Column="2" Grid.Row="6" VerticalOptions="End"/>
+                        <Label x:Name="agiCostLabel" Text="0" Grid.Column="4" Grid.Row="6" FontSize="12" VerticalTextAlignment="Center" Grid.RowSpan="2"/>
+                        <ProgressBar x:Name="agiProgress" Progress="0.5" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="7" VerticalOptions="Start" ProgressColor="White" />
+                        <Button IsEnabled="True" x:Name="agiTrainButton" Clicked="TrainAgility" FontSize="15" TextTransform="None" FontAttributes="Bold" Text="Train" Grid.Column="3" Grid.Row="6" Grid.RowSpan="2"/>
+
+                        <Label x:Name="vitLabel1" Text="" Grid.Column="1" Grid.Row="8" VerticalOptions="End"/>
+                        <Label x:Name="vit1" Text="1" Grid.Column="2" Grid.Row="8" VerticalOptions="End"/>
+                        <Label x:Name="vitCostLabel" Text="0" Grid.Column="4" Grid.Row="8" FontSize="12" VerticalTextAlignment="Center" Grid.RowSpan="2"/>
+                        <ProgressBar x:Name="vitProgress" Progress="0.5" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="9" VerticalOptions="Start" ProgressColor="White" />
+                        <Button IsEnabled="True" x:Name="vitTrainButton" Clicked="TrainVitality" FontSize="15" TextTransform="None" FontAttributes="Bold" Text="Train" Grid.Column="3" Grid.Row="8" Grid.RowSpan="2"/>
+
+                        <Label x:Name="endLabel1" Text="" Grid.Column="1" Grid.Row="10" VerticalOptions="End"/>
+                        <Label x:Name="end1" Text="1" Grid.Column="2" Grid.Row="10" VerticalOptions="End"/>
+                        <Label x:Name="endCostLabel" Text="0" Grid.Column="4" Grid.Row="10" FontSize="12" VerticalTextAlignment="Center" Grid.RowSpan="2"/>
+                        <ProgressBar x:Name="endProgress" Progress="0.5" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="11" VerticalOptions="Start" ProgressColor="White" />
+                        <Button IsEnabled="True" x:Name="endTrainButton" Clicked="TrainEndurance" FontSize="15" TextTransform="None" FontAttributes="Bold" Text="Train" Grid.Column="3" Grid.Row="10" Grid.RowSpan="2"/>
+
+                        <Label x:Name="chaLabel1" Text="" Grid.Column="1" Grid.Row="12" VerticalOptions="End"/>
+                        <Label x:Name="cha1" Text="1" Grid.Column="2" Grid.Row="12" VerticalOptions="End"/>
+                        <Label x:Name="chaCostLabel" Text="0" Grid.Column="4" Grid.Row="12" FontSize="12" VerticalTextAlignment="Center" Grid.RowSpan="2"/>
+                        <ProgressBar x:Name="chaProgress" Progress="0.5" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="13" VerticalOptions="Start" ProgressColor="White" />
+                        <Button IsEnabled="True" x:Name="chaTrainButton" Clicked="TrainCharisma" FontSize="15" TextTransform="None" FontAttributes="Bold" Text="Train" Grid.Column="3" Grid.Row="12" Grid.RowSpan="2"/>
+
+                        <Label x:Name="intLabel1" Text="" Grid.Column="1" Grid.Row="14" VerticalOptions="End"/>
+                        <Label x:Name="int1" Text="1" Grid.Column="2" Grid.Row="14" VerticalOptions="End"/>
+                        <Label x:Name="intCostLabel" Text="0" Grid.Column="4" Grid.Row="14" FontSize="12" VerticalTextAlignment="Center"  Grid.RowSpan="2" />
+                        <ProgressBar x:Name="intProgress" Progress="0.5" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="15" VerticalOptions="Start" ProgressColor="White"/>
+                        <Button IsEnabled="True" x:Name="intTrainButton" Clicked="TrainIntelligence" FontSize="15" TextTransform="None" FontAttributes="Bold" Text="Train"  Grid.Column="3" Grid.Row="14" Grid.RowSpan="2"/>
+
+                    </Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="gold2" TextColor="Gold" Text="1" Grid.Column="1" Grid.Row="0" VerticalOptions="Center"/>
+
+                        <Label IsVisible="False" x:Name="stamCounter2" Text="1/1" Grid.Column="2" Grid.Row="0" VerticalOptions="Center"/>
+                        <ProgressBar IsVisible="False" x:Name="stamBar2" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" ProgressColor="DarkOrange"/>
+                        <!-- Na razie wyłączone z użycia -->
+
+                    </Grid>
+                </StackLayout>
+                <!--</ScrollView>-->
+            </ContentPage>
+        </TabbedPage>
+
+        <!-- KARTA Z WYPRAWAMI -->
+        <TabbedPage x:Name="expeditionTab" Title="Quests">
+            <!--Strona z wyprawami-->
+            <ContentPage x:Name="expeditionScreen" Title="Wyprawy" IsEnabled="True">
+                <ScrollView>
+                    <StackLayout>
+                        <admob:MTAdView AdsId="ca-app-pub-2193099967124824/3068174552" HeightRequest="50"/>
+
+                        <Grid x:Name="expeditionGrid" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="expeditionInfo" Text="Expeditions :" FontSize="10" Grid.Row="0" Grid.Column="1" Clicked="expeditionInfo_Clicked" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                            <!--<Label x:Name="expeditionText" Text="Wyprawy"  Grid.Column="1" Grid.Row="0" FontAttributes="Bold" VerticalOptions="Center"/>-->
+
+                            <Label x:Name="expeditionDurationText" Text="Czas trwania" Grid.Column="2" Grid.Row="0" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                            <Button x:Name="quickenExpedition" Text="Speed up" Grid.Column="3" Grid.Row="0" FontAttributes="Bold" Clicked="quickenExpedition_Clicked" IsVisible="false"/>
+                            <!-- Granary expedition -->
+                            <Label IsVisible="False" x:Name="granaryInfo" Text="" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Label IsVisible="False" x:Name="granaryTime" Text="5 minut" Grid.Row="1" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            <Button IsVisible="False" x:Name="granaryButton" Text="Wyrusz" Grid.Row="1" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="Granary_Clicked"/>
+
+                            <!-- Forest expedition -->
+                            <Label IsVisible="False" x:Name="forestInfo" Text="" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Label IsVisible="False" x:Name="forestTime" Text="5 minut" Grid.Row="2" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            <Button IsVisible="False" x:Name="forestButton" Text="Wyrusz" Grid.Row="2" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="Forest_Clicked"/>
+
+                            <Label IsVisible="False" x:Name="mountainsInfo" Text="" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Label IsVisible="False" x:Name="mountainsTime" Text="5 minut" Grid.Row="2" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            <Button IsVisible="False" x:Name="mountainsButton" Text="Wyrusz" Grid.Row="2" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="Mountains_Clicked"/>
+
+                            <!-- Bandit camp expedition-->
+                            <Label IsVisible="False" x:Name="banditCampInfo" Text="" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Label IsVisible="False" x:Name="banditCampTime" Text="5 minut" Grid.Row="2" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            <Button IsVisible="False" x:Name="banditCampButton" Text="Wyrusz" Grid.Row="2" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="BanditCamp_Clicked"/>
+
+                            <!-- Desert expedition-->
+                            <Label IsVisible="False" x:Name="desertInfo" Text="" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Label IsVisible="False" x:Name="desertTime" Text="5 minut" Grid.Row="2" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            <Button IsVisible="False" x:Name="desertButton" Text="Wyrusz" Grid.Row="2" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="Desert_Clicked"/>
+
+
+                        </Grid>
+
+                    </StackLayout>
+                </ScrollView>
+
+            </ContentPage>
+            <!--Strona z lochami-->
+            <ContentPage x:Name="dungeonScreen" Title="Tab 2" IsVisible="True">
+                <ScrollView>
+                    <StackLayout>
+                        <admob:MTAdView AdsId="ca-app-pub-2193099967124824/3068174552" HeightRequest="50"/>
+
+                        <Label IsVisible="false" x:Name="dungeonTimer" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Grid x:Name="dungeonGrid" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button FontSize="10" IsVisible="true" x:Name="dungeonText" Text="Wyprawy"  Grid.Column="1" Grid.Row="0" FontAttributes="Bold" Clicked="dungeonText_Clicked"/>
+                            <Label IsVisible="true" x:Name="dungeonDifficultyText" Text="Difficulty level :"  Grid.Column="2" Grid.Row="0" FontAttributes="Bold" VerticalOptions="Center"/>
+
+                            <!-- Granary expedition -->
+                            <Label IsVisible="False" x:Name="granaryDungeonInfo" Text="" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Button IsVisible="False" x:Name="granaryDungeonButton" Text="" Grid.Row="1" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="GranaryDungeon_Clicked"/>
+                            <Label IsVisible="False" x:Name="granaryDungeonDifficulty" Text="5-15" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <!-- Forest expedition -->
+                            <Label IsVisible="False" x:Name="forestDungeonInfo" Text="" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Button IsVisible="False" x:Name="forestDungeonButton" Text="" Grid.Row="2" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="ForestDungeon_Clicked"/>
+                            <Label IsVisible="False" x:Name="forestDungeonDifficulty" Text="10-20" Grid.Row="2" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" />
+
+                            <Label IsVisible="False" x:Name="mountainsDungeonInfo" Text="" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Button IsVisible="False" x:Name="mountainsDungeonButton" Text="" Grid.Row="2" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="MountainsDungeon_Clicked"/>
+                            <Label IsVisible="False" x:Name="mountainsDungeonDifficulty" Text="10-20" Grid.Row="2" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" />
+
+                            <Label IsVisible="False" x:Name="banditCampDungeonInfo" Text="" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Button IsVisible="False" x:Name="banditCampDungeonButton" Text="" Grid.Row="2" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="BanditCampDungeon_Clicked"/>
+                            <Label IsVisible="False" x:Name="banditCampDungeonDifficulty" Text="10-20" Grid.Row="2" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" />
+
+                            <Label IsVisible="False" x:Name="desertDungeonInfo" Text="" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Button IsVisible="False" x:Name="desertDungeonButton" Text="" Grid.Row="2" Grid.Column="3" VerticalOptions="Center" HorizontalOptions="Center" Clicked="DesertDungeon_Clicked"/>
+                            <Label IsVisible="False" x:Name="desertDungeonDifficulty" Text="10-20" Grid.Row="2" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" />
+
+
+                        </Grid>
+                        <Label x:Name="noDungeonAvailable" Text="" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                </ScrollView>
+            </ContentPage>
+            <!--<ContentPage Title="Tab 3" />-->
+        </TabbedPage>
+        <!-- Karta miasta -->
+        <TabbedPage x:Name="cityTab" Title="City" BarBackgroundColor="DarkViolet">
+            <ContentPage Title="Shops" x:Name="shopTab" Scale="0.98">
+                <ScrollView>
+                    <StackLayout>
+                        <admob:MTAdView AdsId="ca-app-pub-2193099967124824/3068174552" HeightRequest="50"/>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.2*" />
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.8*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.8*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="shopButton" Text="Shop" FontSize="12" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Clicked="shopButton_Clicked"/>
+                            <Label x:Name="gold3" TextColor="Gold" Text="Gold : " Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+                            <Button AutomationId="0" x:Name="shopButton1" Clicked="ShopBuying_Clicked" Grid.Row="1" Grid.Column="0" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel1" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt"  />
+                            <Image x:Name="shopImage1" Source="" Grid.Column="0" Grid.Row="1" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder1" Source="" Grid.Column="0" Grid.Row="1" Aspect="AspectFit" />
+
+
+                            <Button AutomationId="1" x:Name="shopButton2" Clicked="ShopBuying_Clicked" Grid.Row="1" Grid.Column="2" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel2" Grid.Row="1" Grid.Column="3" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt"  />
+                            <Image x:Name="shopImage2" Source="" Grid.Column="2" Grid.Row="1" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder2" Source="" Grid.Column="2" Grid.Row="1" Aspect="AspectFit" />
+
+
+                            <Button AutomationId="2" x:Name="shopButton3" Clicked="ShopBuying_Clicked" Grid.Row="2" Grid.Column="0" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel3" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt"  />
+                            <Image x:Name="shopImage3" Source="" Grid.Column="0" Grid.Row="2" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder3" Source="" Grid.Column="0" Grid.Row="2" Aspect="AspectFit" />
+
+
+                            <Button AutomationId="3" x:Name="shopButton4" Clicked="ShopBuying_Clicked" Grid.Row="2" Grid.Column="2" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel4" Grid.Row="2" Grid.Column="3" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt"  />
+                            <Image x:Name="shopImage4" Source="" Grid.Column="2" Grid.Row="2" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder4" Source="" Grid.Column="2" Grid.Row="2" Aspect="AspectFit" />
+
+
+                            <Button AutomationId="4" x:Name="shopButton5" Clicked="ShopBuying_Clicked" Grid.Row="3" Grid.Column="0" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel5" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt"  />
+                            <Image x:Name="shopImage5" Source="" Grid.Column="0" Grid.Row="3" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder5" Source="" Grid.Column="0" Grid.Row="3" Aspect="AspectFit" />
+
+
+                            <Button AutomationId="5" x:Name="shopButton6" Clicked="ShopBuying_Clicked" Grid.Row="3" Grid.Column="2" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel6" Grid.Row="3" Grid.Column="3" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt2&#x0a;Test"  />
+                            <Image x:Name="shopImage6" Source="" Grid.Column="2" Grid.Row="3" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder6" Source="" Grid.Column="2" Grid.Row="3" Aspect="AspectFit" />
+
+
+
+
+
+                            <Button AutomationId="6" x:Name="shopButton7" Clicked="ShopBuying_Clicked" Grid.Row="4" Grid.Column="0" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel7" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt"  />
+                            <Image x:Name="shopImage7" Source="" Grid.Column="0" Grid.Row="4" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder7" Source="" Grid.Column="0" Grid.Row="4" Aspect="AspectFit" />
+
+
+                            <Button AutomationId="7" x:Name="shopButton8" Clicked="ShopBuying_Clicked" Grid.Row="4" Grid.Column="2" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel8" Grid.Row="4" Grid.Column="3" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt"  />
+                            <Image x:Name="shopImage8" Source="" Grid.Column="2" Grid.Row="4" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder8" Source="" Grid.Column="2" Grid.Row="4" Aspect="AspectFit" />
+
+
+                            <Button AutomationId="8" x:Name="shopButton9" Clicked="ShopBuying_Clicked" Grid.Row="5" Grid.Column="0" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel9" Grid.Row="5" Grid.Column="1" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt"  />
+                            <Image x:Name="shopImage9" Source="" Grid.Column="0" Grid.Row="5" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder9" Source="" Grid.Column="0" Grid.Row="5" Aspect="AspectFit" />
+
+
+                            <Button AutomationId="9" x:Name="shopButton10" Clicked="ShopBuying_Clicked" Grid.Row="5" Grid.Column="2" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel10" Grid.Row="5" Grid.Column="3" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt"  />
+                            <Image x:Name="shopImage10" Source="" Grid.Column="2" Grid.Row="5" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder10" Source="" Grid.Column="2" Grid.Row="5" Aspect="AspectFit" />
+
+
+                            <Button AutomationId="10" x:Name="shopButton11" Clicked="ShopBuying_Clicked" Grid.Row="6" Grid.Column="0" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel11" Grid.Row="6" Grid.Column="1" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt"  />
+                            <Image x:Name="shopImage11" Source="" Grid.Column="0" Grid.Row="6" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder11" Source="" Grid.Column="0" Grid.Row="6" Aspect="AspectFit" />
+
+
+                            <Button AutomationId="11" x:Name="shopButton12" Clicked="ShopBuying_Clicked" Grid.Row="6" Grid.Column="2" Background="Transparent" FontSize="6"/>
+                            <Label x:Name="shopLabel12" Grid.Row="6" Grid.Column="3" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt2&#x0a;Test"  />
+                            <Image x:Name="shopImage12" Source="" Grid.Column="2" Grid.Row="6" Aspect="AspectFit" />
+                            <Image x:Name="shopBorder12" Source="" Grid.Column="2" Grid.Row="6" Aspect="AspectFit" />
+
+                        </Grid>
+                        <Label Text="" x:Name="shopTimer" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </ScrollView>
+            </ContentPage>
+
+            <ContentPage Title="Arena" x:Name="arenaTab" Scale="0.98"  >
+                <ScrollView>
+                    <StackLayout>
+                        <admob:MTAdView AdsId="ca-app-pub-2193099967124824/3068174552" HeightRequest="50" />
+                        <Button x:Name="arenaButton" Text="Arena" Clicked="arenaButton_Clicked"/>
+                        <!--<Label x:Name="arenaText" Text="Witaj na arenie" HorizontalOptions="Center" FontSize="13" />-->
+
+                        <Label x:Name="fame2" Text="Fame : " HorizontalOptions="End"/>
+                        <Grid>
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <BoxView Grid.Row="0" Grid.Column="0" Color="ForestGreen" Grid.ColumnSpan="2"/>
+                            <BoxView Grid.Row="1" Grid.Column="0" Color="Orange" Grid.ColumnSpan="2"/>
+                            <BoxView Grid.Row="2" Grid.Column="0" Color="DarkRed" Grid.ColumnSpan="2"/>
+                            <BoxView Grid.Row="3" Grid.Column="0" Color="Black" Grid.ColumnSpan="2"/>
+
+                            <Button Clicked="EasyFight_Clicked" x:Name="arenaEasyFight" Text="Fight" Grid.Row="0" Grid.Column="1" VerticalOptions="Center"/>
+                            <Label x:Name="arenaEasyFightText" Text="Test your skills without risking injuries" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
+
+                            <Button Clicked="MediumFight_Clicked" x:Name="arenaMediumFight" Text="Fight" Grid.Row="1" Grid.Column="1" VerticalOptions="Center"/>
+                            <Label x:Name="arenaMediumFightText" Text="Test your skills without risking injuries" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
+
+                            <Button Clicked="HardFight_Clicked" x:Name="arenaHardFight" Text="Fight" Grid.Row="2" Grid.Column="1" VerticalOptions="Center"/>
+                            <Label x:Name="arenaHardFightText" Text="Test your skills without risking injuries" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
+
+                            <Button Clicked="BossFight_Clicked" x:Name="arenaBossFight" Text="Fight" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"/>
+                            <Label x:Name="arenaBossFightText" Text="Test your skills without risking injuries" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
+                        </Grid>
+                        <Label x:Name="arenaNextDuelTimer" Text="Następny pojedynek za : 05:20:10" HorizontalOptions="Center"/>
+                        <Button x:Name="arenaSpeedup" Text="Speedup" HorizontalOptions="Center" Clicked="ArenaSpeedup_Clicked"/>
+                        <Label x:Name="arenaFameReward" Text="Spend x fame to recieve this item"/>
+
+                        <Grid HeightRequest="100" x:Name="arenaRewardGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="recieveArenaReward" Grid.Column="0" HeightRequest="100" Text="test" BackgroundColor="transparent" Clicked="recieveArenaReward_Clicked"/>
+                            <Label x:Name="arenaReward" Grid.Column="1" VerticalOptions="Center" FontSize="10" Text="Nazwa itemka123456789012345678901246&#x0a;Level&#x0a;Typ rzedmiotu&#x0a;Armor/Dmg&#x0a;Bonusowe staty 1&#x0a;Bonusowe staty 2&#x0a;Koszt2&#x0a;Test"  />
+                            <Image x:Name="arenaImage" Source="" Grid.Column="0"  Aspect="AspectFit" />
+                            <Image x:Name="arenaBorder" Source="" Grid.Column="0" Aspect="AspectFit" />
+
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+            </ContentPage>
+
+            <ContentPage x:Name="workTab" Title="Work" ScaleX="0.95">
+                <ScrollView>
+                    <StackLayout>
+                        <admob:MTAdView AdsId="ca-app-pub-2193099967124824/3068174552" HeightRequest="50"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1.2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions RowSpacing="0">
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="workButtonInfo" FontSize="12" Text="Work" Grid.Column="0" Grid.Row="0" Clicked="workButtonInfo_Clicked"/>
+                            <Label x:Name="payLabel" Text="Pay" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" VerticalOptions="Center"/>
+                            <Label x:Name="work1" Text="Work in the mines" Grid.Column="0" Grid.Row="1" FontSize="16" Grid.ColumnSpan="2" VerticalOptions="Center"/>
+                            <Label x:Name="pay1" Text="100" Grid.Row="1" Grid.Column="2" VerticalOptions="Center"/>
+                            <Button x:Name="workButton1" Text="Work" Grid.Row="1" Grid.Column="3" Clicked="workButton1_Clicked"/>
+                            <Label x:Name="work2" Text="Work in the forest" Grid.Column="0" Grid.Row="2" FontSize="16" Grid.ColumnSpan="2" VerticalOptions="Center"/>
+                            <Label x:Name="pay2" Text="100" Grid.Row="2" Grid.Column="2" VerticalOptions="Center"/>
+                            <Button x:Name="workButton2" Text="Work" Grid.Row="2" Grid.Column="3" Clicked="workButton2_Clicked"/>
+                            <Label x:Name="work3" Text="Work in the marketplace" Grid.Column="0" Grid.Row="3" FontSize="16" Grid.ColumnSpan="2" VerticalOptions="Center"/>
+                            <Label x:Name="pay3" Text="100" Grid.Row="3" Grid.Column="2" VerticalOptions="Center"/>
+                            <Button x:Name="workButton3" Text="Work" Grid.Row="3" Grid.Column="3" Clicked="workButton3_Clicked"/>
+                            <Label x:Name="work4" Text="Work in the construction" Grid.Column="0" Grid.Row="4" FontSize="16" Grid.ColumnSpan="2" VerticalOptions="Center"/>
+                            <Label x:Name="pay4" Text="100" Grid.Row="4" Grid.Column="2" VerticalOptions="Center"/>
+                            <Button x:Name="workButton4" Text="Work" Grid.Row="4" Grid.Column="3" Clicked="workButton4_Clicked"/>
+                            <Label x:Name="TimeSet" Text="" Grid.Row="5" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <gladiatorrpg:SnappingSlider x:Name="slider" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Minimum="0" Maximum="7" Value="7" ValueChanged="Slider_ValueChanged"/>
+                            <Button IsVisible="false" x:Name="quickenWork" Text="Speed up" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Clicked="quickenWork_Clicked"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="quickWorkLabel" Text="Quick work" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" />
+                            <Button Text="Work" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" x:Name="QuickWork" Clicked="QuickWork_Clicked"/>
+                            <Label x:Name="quickWorkCostLabel" Text="Stamina cost : 2" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center"/>
+
+                            <Label x:Name="quickTrainLabel" Text="Quick training" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" />
+                            <Button Text="Work" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" x:Name="QuickTrain" Clicked="QuickTrain_Clicked"/>
+                            <Label x:Name="quickTrainCostLabel" Text="Stamina cost : 2" Grid.Column="1" Grid.Row="2" HorizontalOptions="Center"/>
+
+
+
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label x:Name="workStaminaLabel" Text="Stamina 10/10" HorizontalOptions="Center" VerticalOptions="Start" TranslationY="-10"/>
+                            <ProgressBar x:Name="workStamina" Progress="0.5" ProgressColor="Orange" VerticalOptions="End" />
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+
+            </ContentPage>
+        </TabbedPage>
+
+
+    </TabbedPage.Children>
+
+</TabbedPage>
+
+
+    
+    
+    
+    
+    
