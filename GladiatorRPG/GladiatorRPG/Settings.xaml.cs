@@ -273,8 +273,8 @@ namespace GladiatorRPG
 
 
 
-        private const string Key = "Xvr#?R*;Lf^<b5d)";
-        private const string IV = "L5=)%#gVvj;,aXPt";
+        private const string Key = "****";
+        private const string IV = "****";
 
 
         public string EncryptPlayerData(string jsonData)
